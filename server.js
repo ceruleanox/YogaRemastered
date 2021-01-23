@@ -10,21 +10,26 @@ const io = socketio(server);
 // set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Run when client connects
+// run when client connects
 io.on('connection', socket => {
-    console.log("Establishing new WebSocket connection...");
+  console.log("Establishing new WebSocket connection...");
 
-    // automatic message upon loading or reloading page 
-    socket.emit('message', 'Welcome to Yoga Remastered: C&C!');
+  // automatic message upon loading or reloading page
+  socket.emit("message", "Welcome to Yoga Remastered: C&C!");
 
-    // broadcast when a user connects
-    // does not broadcast to user entering room
-    socket.broadcast.emit('message', 'A user has joined the chat');
+  // broadcast when a user connects
+  // does not broadcast to user entering room
+  socket.broadcast.emit("message", "A user has joined the room");
 
-    // runs when client disconnects
-    socket.on('disconnect', () => {
-        io.emit('message', 'A user has left the chat');
-    });
+  // run when client disconnects
+  socket.on("disconnect", () => {
+    io.emit("message", "A user has left the room");
+  });
+
+  // listen for chat message
+  socket.on("chatMessage", (msg) => {
+    io.emit('message', msg);
+  });
 });
 
 const PORT = 3000 || process.env.PORT;
