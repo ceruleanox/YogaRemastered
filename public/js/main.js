@@ -84,15 +84,12 @@ function outputMessage(message) {
 
 // add room name to DOM
 function outputRoomName(room) {
-    roomName.innertText = room;
+    roomName.innerText = room;
 }
 
 // add users to DOM
 function outputUsers(users) {
-   userList.innerHTML = '';
-   users.ForEach(user => {
-       const li = document.createElement('li');
-       li.innerText = user.username;
-       userList.appendChild(li);
-   });
+   userList.innerHTML = `
+    ${users.map(user => `<li>${user.username}</li>`).join('')}
+   `;
 }
