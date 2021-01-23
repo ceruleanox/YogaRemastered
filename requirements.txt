@@ -1,0 +1,4 @@
+express
+socket.io
+moment
+nodemon
