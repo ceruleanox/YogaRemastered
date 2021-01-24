@@ -22,7 +22,7 @@ const room = urlParams.get('room'); // room
 var socket = io();
 
 // join chatroom
-socket.emit('joinRoom', { username, room });
+socket.emit('joinRoom-chat', { username, room });
 
 // get room and users
 socket.on('roomUsers', ({room, users}) => {

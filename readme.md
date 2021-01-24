@@ -3,3 +3,8 @@
 2.) In YogaRemastered folder (containing server.js file), execute: npm run dev
 
 3.) open localhost:3000 in browser
+
+
+zoom imports
+npm install uuid
+npm install peer
