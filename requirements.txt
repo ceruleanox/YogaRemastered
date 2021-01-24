@@ -2,3 +2,8 @@ express
 socket.io
 moment
 nodemon
+node
+peer
+
+--ejs?
+--uuid?

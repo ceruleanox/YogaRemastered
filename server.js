@@ -9,6 +9,9 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
+// set up how to render views
+app.set('view engine','ejs');
+
 // set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 

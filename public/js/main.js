@@ -3,6 +3,8 @@ const chatMessages = document.querySelector('.chat-messages');
 const roomName = document.getElementById('room-name');
 const userList = document.getElementById('users');
 
+/************************ */
+
 // get username and room from URL parameters
 
 const queryString = window.location.search;
@@ -11,18 +13,74 @@ console.log(queryString);
 const urlParams = new URLSearchParams(queryString);
 // ?username=name&room=Gaming
 
-const username = urlParams.get('username'); // username
-const room = urlParams.get('room'); // room
+// const username = urlParams.get('username'); // username
+// const room = urlParams.get('room'); // room
 
-// const { username, room } = 
-//Qs.parse(location.search, {
-//    ignoreQueryPrefix: true
-//});
+const { username, room } = Qs.parse(location.search, {
+    ignoreQueryPrefix: true
+});
+
+
+/***********SET UP VIDEO***************/
+
+const videoGrid = document.getElementById('video-grid');
+
+// create connection to peer server
+const myPeer = new Peer(undefined, {
+    host: '/',
+    port: '3001'
+});
+
+
+myPeer.on('open', id => {
+    socket.emit('join-room', { username, room })
+});
+
+
+const myVideo = document.createElement('video');
+myVideo.muted = true;
+
+const peers = {};
+
+navigator.mediaDevices.getUserMedia({
+    video: true,
+    audio: true
+}).then(stream => {
+    addVideoStream(myVideo, stream);
+});
+
+myPeer.on('call', call => {
+    call.answer(stream); 
+});
+
+function addVideoStream(video, stream) {
+    video.srcObject = stream;
+    video.addEventListener('loadedmetadata', () => {
+        video.play()
+    });
+    videoGrid.append(video);
+}
+
+function connectToNewUser(userId, stream) {
+    const call = myPeer.call(userId, stream);
+    const video = document.createElement('video');
+    call.on('stream', userVideoStream => {
+        addVideoStream(video, userVideoStream)
+    });
+    call.on('close', () => {
+        video.remove();
+    });
+}
+
+
+/***********************************/
 
 var socket = io();
 
 // join chatroom
-socket.emit('joinRoom', { username, room });
+socket.emit('joinRoom', ({ username, room }) => {
+    connectToNewUser(username, stream); // send video stream to user who just joined room
+});
 
 // get room and users
 socket.on('roomUsers', ({room, users}) => {

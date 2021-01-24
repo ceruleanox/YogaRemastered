@@ -10,9 +10,11 @@
   "author": "Anita Yip",
   "license": "MIT",
   "dependencies": {
+    "ejs": "^3.1.5",
     "express": "^4.17.1",
     "moment": "^2.29.1",
     "node": "^15.4.0",
+    "peer": "^0.6.1",
     "socket.io": "^3.1.0"
   },
   "devDependencies": {
