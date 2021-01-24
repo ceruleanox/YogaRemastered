@@ -9,21 +9,8 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
-<<<<<<< HEAD
 // set up how to render views
 app.set('view engine','ejs');
-=======
-//zoom
-/*
-const server = require('http').Server(app);
-const io = require('socket.io')(server)
-*/
-const { v4: uuidV4 } = require('uuid'); 
-const { ExpressPeerServer } = require('peer');
-const peerServer = ExpressPeerServer(server, {
-  debug: true
-})
->>>>>>> 675b12b488bcc8d944f249ba34fb9a78a5068369
 
 // set static folder
 app.use(express.static(path.join(__dirname, 'public')));
