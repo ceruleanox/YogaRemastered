@@ -18,6 +18,7 @@
 	--light-blue: #A5DBF5;
 	--teal: #3B91A3;
 	--purple: #2F0072;
+	--bright-purple: #5900d8;
 	--white: #FFFFFF;
 	--off-black: #222222;
 }
@@ -39,13 +40,16 @@ a {
 .btn {
 	cursor: pointer;
 	padding: 5px 15px;
-	background: var(--white);
-	color: var(--dark-color-a);
 	border: 0;
-	font-size: 17px;
+	font-weight: 500;
+
 }
 
-/* Chat Page */
+/* Video & Chat Page */
+.page-container {
+	display: flex;
+	flex-direction: column;
+}
 
 .chat-container {
 	max-width: 1100px;
@@ -55,8 +59,8 @@ a {
 }
 
 .chat-header {
-	background: var(--dark-color-a);
-	color: var(--white);
+	background: var(--light-pink);
+	color: var(--off-black);
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 	padding: 15px;
@@ -65,13 +69,17 @@ a {
 	justify-content: space-between;
 }
 
+.chat-header span {
+	color: var(--bright-purple);
+}
+
 .chat-main {
 	display: grid;
 	grid-template-columns: 1fr 3fr;
 }
 
 .chat-sidebar {
-	background: var(--dark-color-b);
+	background: var(--purple);
 	color: var(--white);
 	padding: 20px 20px 60px;
 	overflow-y: scroll;
@@ -120,11 +128,12 @@ a {
 
 .room-form-container {
 	padding: 20px 30px;
-	background-color: var(--dark-color-a);
+	background-color: var(--coral);
 }
 
 .room-form-container form {
 	display: flex;
+	flex-direction: row;
 }
 
 .room-form-container input[type='text'] {
@@ -132,6 +141,22 @@ a {
 	padding: 5px;
 	height: 40px;
 	flex: 1;
+	border-radius: 10px;
+	font-weight: 500;
+}
+
+form .btn {
+	background-color: var(--purple);
+	color: white;
+	max-width: 200px;
+	border-radius: 20px;
+	margin: 0 10px;
+	width: 100%;
+	font-size: 16px;
+}
+
+form .btn:hover {
+	background-color: var(--bright-purple);
 }
 
 /* Join Page */
@@ -161,7 +186,7 @@ a {
 
 .join-header h5 {
 	padding: 4px;
-	color: var(--purple);
+	color: var(--bright-purple);
 }
 
 .yoga {
@@ -204,7 +229,7 @@ form {
 	padding-left: 20px;
 	height: 40px;
 	width: 100%;
-	border-radius: 20px;
+	border-radius: 10px;
 	border: none;
 	color: var(--off-black);
 	font-weight: 500;
@@ -217,7 +242,7 @@ form {
 	height: 40px;
 	width: 100%;
 	border: none;
-	border-radius: 20px;
+	border-radius: 10px;
 	font-weight: 500;
 }
 
@@ -236,7 +261,7 @@ form {
 }	
 
 .join-main .btn:hover {
-		background-color: #5900d8;
+		background-color: var(--bright-purple);
 }
 
 @media (max-width: 700px) {
