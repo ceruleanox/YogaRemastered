@@ -6,5 +6,4 @@
 
 
 zoom imports
-npm install uuid
 npm install peer

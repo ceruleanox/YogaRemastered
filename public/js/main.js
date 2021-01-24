@@ -78,13 +78,9 @@ function connectToNewUser(userId, stream) {
 var socket = io();
 
 // join chatroom
-<<<<<<< HEAD
 socket.emit('joinRoom', ({ username, room }) => {
     connectToNewUser(username, stream); // send video stream to user who just joined room
 });
-=======
-socket.emit('joinRoom-chat', { username, room });
->>>>>>> 675b12b488bcc8d944f249ba34fb9a78a5068369
 
 // get room and users
 socket.on('roomUsers', ({room, users}) => {
@@ -114,9 +110,9 @@ roomForm.addEventListener('submit', e => {
         return false;
     }
     
-    // broadcast message to server
+    // broadcastmessage to server
     socket.emit('chatMessage', msg);
-
+ 
     // clear input text for next input message and scroll down to latest message
     e.target.elements.msg.value = '';
     e.target.elements.msg.focus();
